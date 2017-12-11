@@ -23,7 +23,7 @@ def url_string_parse(input_string, feature_split='&', key_value_split='='):
 	return {el.split(key_value_split)[0]: el.split(key_value_split)[1] for el in input_vec}
 
 # creating a flask instance
-app = Flask(__name__) 
+app = Flask(__name__)
 
 # api to be called at this url
 @app.route('/titanic/<string:input_vec>', methods=['GET'])
@@ -35,17 +35,17 @@ def live_or_die(input_vec):
 	"""
 	global cntr, max_pings, dt
 
-	# every time the function is called, i.e. for every api call, increment the counter by one
-	cntr += 1
-
 	# if one minute has passed, reset everything
 	if (dt <= (datetime.now() - timedelta(minutes=1))): dt = datetime.now(); cntr = 0
+
+	# every time the function is called, i.e. for every api call, increment the counter by one
+	cntr += 1
 
 	# Impose restrictions on the api call
 	if (cntr > max_pings):
 		return "You reached your minute limit with more than " + str(max_pings) + \
-		" calls per minute" + ' <br>You have ' + str(cntr) + ' pings @ ' + str(dt) +\
-		'<br> Wait another ' + str(60 - (datetime.now() - dt).seconds) + ' seconds' 
+		" calls per minute" + ' <br>You have ' + str(cntr) + ' pings @ ' + str(dt.replace(second=0, microsecond=0)) +\
+		'<br> Wait another ' + str(60 - (datetime.now() - dt).seconds) + ' seconds'
 
 	# parse features and values from url string to dictionary
 	v = url_string_parse(input_vec)
@@ -59,7 +59,7 @@ def live_or_die(input_vec):
 
 	prefx = 'She ' if v['sex'] == 1 else 'He '
 
-	return prefx + v['Outcome'] + ' <br>Pings: ' + str(cntr) + ' @ ' + str(dt)
+	return prefx + v['Outcome'] + ' <br>Pings: ' + str(cntr) + ' @ ' + str(dt.replace(second=0, microsecond=0))
 
 @app.route('/titanic/', methods=['GET'])
 def guide():
