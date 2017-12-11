@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Titanic API how to</title>
+
+    <style>
+      body {
+        background-color: #fefbd8;
+      }
+
+      span#class{
+        background-color: #A2CFC0;
+      }
+
+      span#sex {
+        background-color: #BB8F8E;
+      }
+
+      span#age {
+        background-color: #BFE2EE;
+      }
+
+    </style>
+
+  </head>
+  <body>
+  <br><br>
+    <h1>Structure of GET request is:</h1>
+  	http://127.0.0.1:5000{{url_for('live_or_die', input_vec='')}}<b>class=</b><span id=class>number 1 or 2 or 3</span>&<b>sex=</b><span id=sex>male or female</span>&<b>age=</b><span id=age>some float number</span><br><br>
+  	<h3>Examples:</h3>
+  	<ul><a target="_blank" href="{{url_for('live_or_die', input_vec='class=3&sex=male&age=20.5')}}">
+      <b>http://127.0.0.1:5000{{url_for('live_or_die', input_vec='')}}class=<span id=class>3</span>&sex=<span id=sex>male</span>&age=<span id=age>20.5</span>
+    </b></a></ul>
+  	<ul><a target="_blank" href="{{url_for('live_or_die', input_vec='class=1&sex=female&age=45')}}">
+      <b>http://127.0.0.1:5000{{url_for('live_or_die', input_vec='')}}class=<span id=class>1</span>&sex=<span id=sex>female</span>&age=<span id=age>45</span>
+    </b></a></ul>
+  	<br><br>
+
+    <h3><a target="_blank" href="http://127.0.0.1:5000{{url_for('live_or_die', input_vec='')}}class=3&sex=male&age=10.5">Try it out!</a></h3>
+    <h3><a target="_blank" href="{{url_for('my_model')}}">Read model documentation</a></h3>
+
+
+  </body>
+</html>
