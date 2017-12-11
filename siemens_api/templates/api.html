@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>API Titanic</title>
+  </head>
+  <body>
+    <h1>Prediction result</h1>
+
+    {% if limit_reached %}
+      <h3>You reached your minute limit with more than {{max_pings}} calls per minute </h3>
+      You have <font size=5>{{pings}} </font> pings @ {{timedate}}<br>
+      Wait another <font size=4>{{wait_time}}</font> seconds
+    {% else %}
+        <font size=5><b>{{prefix}} {{outcome}}</b></font><br><br>
+        <b>Number of total pings: </b> <font size=5>{{pings}} </font> @ {{timedate}}
+    {% endif %}
+
+
+  </body>
+</html>
